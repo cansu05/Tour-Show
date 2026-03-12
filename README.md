@@ -35,7 +35,7 @@ The project focuses on a clean user experience, scalable front-end architecture,
 - **Storage:** Firebase Storage
 - **Internationalization:** Next.js-compatible i18n setup
 - **Testing:** Vitest / Testing Library
-- **Package Manager:** Yarn
+- **Package Manager:** Npm
 
 ## Architecture Highlights
 
