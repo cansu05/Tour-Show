@@ -5,7 +5,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import QrCode2Icon from '@mui/icons-material/QrCode2';
 import {Button, Dialog, DialogContent, DialogTitle, Paper, Stack, Typography} from '@mui/material';
 import {QRCodeSVG} from 'qrcode.react';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useTranslations} from 'next-intl';
 import type {AppLocale} from '@/constants/locales';
 import {buildTourShareUrl, buildWhatsAppShareUrl} from '@/utils/share-url';
@@ -21,8 +21,17 @@ export function ShareActions({slug, title, locale, onFeedback}: Props) {
   const tTour = useTranslations('tour');
   const tShare = useTranslations('share');
   const [openQR, setOpenQR] = useState(false);
+  const [runtimeOrigin, setRuntimeOrigin] = useState('');
 
-  const shareUrl = buildTourShareUrl(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000', locale, slug);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setRuntimeOrigin(window.location.origin);
+    }
+  }, []);
+
+  const envBaseUrl = (process.env.NEXT_PUBLIC_APP_URL ?? '').trim();
+  const baseUrl = envBaseUrl || runtimeOrigin;
+  const shareUrl = baseUrl ? buildTourShareUrl(baseUrl, locale, slug) : `/${locale}/tours/${slug}`;
 
   const onCopy = async () => {
     if (!navigator.clipboard) {
