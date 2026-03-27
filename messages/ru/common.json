@@ -1,0 +1,10 @@
+{
+  "appName": "Tour Tablet",
+  "retry": "Povtorit",
+  "close": "Zakryt",
+  "language": "Yazyk",
+  "unsupported": "Ne podderzhivaetsya",
+  "tourLoadError": "Ne udalos zagruzit dannye tura. Proverte podklyuchenie k internetu i povtorite popytku.",
+  "pageNotFoundTitle": "Stranitsa ne naydena.",
+  "pageNotFoundDescription": "Zaprosennaya stranitsa ne sushchestvuet."
+}

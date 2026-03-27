@@ -38,6 +38,10 @@ export function TourListClient({tours}: Props) {
   });
 
   const debouncedSearch = useDebouncedValue(search, SEARCH_DEBOUNCE_MS);
+  const availableCategories = useMemo(
+    () => Array.from(new Set(tours.flatMap((tour) => tour.categories))).sort((a, b) => a.localeCompare(b, locale)),
+    [locale, tours]
+  );
 
   const speech = useSpeechRecognition({
     lang: locale,
@@ -62,13 +66,13 @@ export function TourListClient({tours}: Props) {
     const scored = categoryFiltered
       .map((tour) => ({tour, result: scoreTourAgainstSearch(tour, debouncedSearch)}))
       .filter((entry): entry is {tour: Tour; result: NonNullable<ReturnType<typeof scoreTourAgainstSearch>>} => Boolean(entry.result))
-      .sort((a, b) => b.result.score - a.result.score || a.tour.title.localeCompare(b.tour.title, 'tr'));
+      .sort((a, b) => b.result.score - a.result.score || a.tour.title.localeCompare(b.tour.title, locale));
 
     return {
       list: scored.map((entry) => entry.tour),
       suggestions: scored.filter((entry) => entry.result.reason === 'fuzzy').slice(0, MAX_SUGGESTIONS).map((entry) => entry.tour.title)
     };
-  }, [activeCategory, debouncedSearch, tours]);
+  }, [activeCategory, debouncedSearch, locale, tours]);
 
   const showNoResult = tours.length > 0 && ranked.list.length === 0;
   const visibleTours = ranked.list.slice(0, visibleCount);
@@ -144,7 +148,7 @@ export function TourListClient({tours}: Props) {
             boxShadow: '0 8px 22px rgba(5,63,92,0.06)'
           }}
         >
-          <CategoryFilters value={activeCategory} onChange={handleCategoryChange} />
+          <CategoryFilters categories={availableCategories} value={activeCategory} onChange={handleCategoryChange} />
         </Paper>
       </Stack>
 

@@ -1,39 +1,56 @@
-﻿import type {TourCategory} from '@/constants/categories';
+import type {AppLocale} from '@/constants/locales';
 
-export type LocalizedText = {
-  tr?: string;
-  en?: string;
-  de?: string;
+export type TourRegionPricing = {
+  adultPrice?: number | null;
+  childPrice?: number | null;
+  availableDays?: string[];
+};
+
+export type TourPricing = {
+  currency?: string;
+  byRegion?: Record<string, TourRegionPricing>;
+};
+
+export type TourParticipantRules = {
+  freeChildMinAge?: number | null;
+  freeChildMaxAge?: number | null;
+  childMinAge?: number | null;
+  childMaxAge?: number | null;
+};
+
+export type TourLocalizedContent = {
+  title: string;
+  shortDescription: string;
+  description?: string;
+  thingsToBring?: string[];
+  importantNotes?: string[];
 };
 
 export type Tour = {
   id: string;
-  title: string;
   slug: string;
-  keywords: string[];
-  categories: TourCategory[];
-  shortDescription: string;
-  highlights: string[];
-  includedServices: string[];
-  duration?: string;
-  priceText?: string;
+  isActive: boolean;
+  categories: string[];
+  hasTransfer: boolean;
+  hasMeal: boolean;
+  campaignPrice?: number | null;
+  pricing: TourPricing;
+  participantRules?: TourParticipantRules;
   coverImage: string;
   gallery: string[];
-  isActive: boolean;
+  videoUrl?: string;
+  localized?: Partial<Record<AppLocale, TourLocalizedContent>>;
+  title: string;
+  shortDescription: string;
+  description?: string;
+  thingsToBring: string[];
+  importantNotes: string[];
+  priceText?: string;
+  keywords: string[];
   createdAt: string;
   updatedAt: string;
-  localized?: {
-    title?: LocalizedText;
-    shortDescription?: LocalizedText;
-    duration?: LocalizedText;
-    priceText?: LocalizedText;
-    keywords?: Record<string, string[]>;
-    highlights?: Record<string, string[]>;
-    includedServices?: Record<string, string[]>;
-  };
 };
 
 export type TourDocument = Partial<Omit<Tour, 'id'>> & {
   id?: string;
 };
-

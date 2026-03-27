@@ -1,0 +1,7 @@
+{
+  "noResults": "Pro \"{searchTerm}\" nebyly nalezeny zadne vysledky.",
+  "suggestionsTitle": "Mysleli jste:",
+  "speechNotDetected": "Nebyl rozpoznan zadny hlas. Zkuste to znovu.",
+  "micPermissionDenied": "Pro hlasove hledani je vyzadovano povoleni mikrofonu.",
+  "speechUnsupported": "Hlasove hledani neni na tomto zarizeni podporovano."
+}

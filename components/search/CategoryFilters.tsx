@@ -1,27 +1,19 @@
 'use client';
 
 import {Box, Chip, Stack, Typography} from '@mui/material';
-import {TOUR_CATEGORIES} from '@/constants/categories';
-import {useTranslations} from 'next-intl';
-import {toCategoryLabelKey} from '@/utils/category-label';
+import {useLocale, useTranslations} from 'next-intl';
+import type {AppLocale} from '@/constants/locales';
+import {formatCategoryLabel} from '@/utils/tour-labels';
 
 type Props = {
+  categories: string[];
   value: string | null;
   onChange: (category: string | null) => void;
 };
 
-export function CategoryFilters({value, onChange}: Props) {
+export function CategoryFilters({categories, value, onChange}: Props) {
+  const locale = useLocale() as AppLocale;
   const t = useTranslations('home');
-
-  const categoryLabels = {
-    aile: t('categoryLabels.aile'),
-    doga: t('categoryLabels.doga'),
-    deniz: t('categoryLabels.deniz'),
-    tarih: t('categoryLabels.tarih'),
-    macera: t('categoryLabels.macera'),
-    gunubirlik: t('categoryLabels.gunubirlik'),
-    konaklamali: t('categoryLabels.konaklamali')
-  };
 
   return (
     <Stack spacing={1.15}>
@@ -51,24 +43,20 @@ export function CategoryFilters({value, onChange}: Props) {
             }}
             onClick={() => onChange(null)}
           />
-          {TOUR_CATEGORIES.map((category) => {
-            const key = toCategoryLabelKey(category);
-
-            return (
-              <Chip
-                key={category}
-                label={key ? categoryLabels[key] : category}
-                clickable
-                color={value === category ? 'primary' : 'default'}
-                variant="filled"
-                sx={{
-                  px: 1.2,
-                  bgcolor: value === category ? 'primary.main' : 'rgba(255,255,255,0.9)'
-                }}
-                onClick={() => onChange(category)}
-              />
-            );
-          })}
+          {categories.map((category) => (
+            <Chip
+              key={category}
+              label={formatCategoryLabel(category, locale)}
+              clickable
+              color={value === category ? 'primary' : 'default'}
+              variant="filled"
+              sx={{
+                px: 1.2,
+                bgcolor: value === category ? 'primary.main' : 'rgba(255,255,255,0.9)'
+              }}
+              onClick={() => onChange(category)}
+            />
+          ))}
         </Stack>
       </Box>
     </Stack>

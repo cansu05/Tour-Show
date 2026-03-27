@@ -1,0 +1,10 @@
+{
+  "appName": "Tour Tablet",
+  "retry": "Reessayer",
+  "close": "Fermer",
+  "language": "Langue",
+  "unsupported": "Non pris en charge",
+  "tourLoadError": "Impossible de charger les donnees du tour. Verifiez votre connexion internet et reessayez.",
+  "pageNotFoundTitle": "Page introuvable.",
+  "pageNotFoundDescription": "La page demandee n'existe pas."
+}

@@ -3,7 +3,7 @@
 import {MenuItem, Select, Stack, Typography} from '@mui/material';
 import {useLocale, useTranslations} from 'next-intl';
 import {usePathname, useRouter} from '@/i18n/navigation';
-import {LOCALES} from '@/constants/locales';
+import {LOCALES, LOCALE_LABELS} from '@/constants/locales';
 
 export function LocaleSwitcher() {
   const currentLocale = useLocale();
@@ -30,7 +30,7 @@ export function LocaleSwitcher() {
       >
         {LOCALES.map((locale) => (
           <MenuItem key={locale} value={locale}>
-            {locale.toUpperCase()}
+            {LOCALE_LABELS[locale]}
           </MenuItem>
         ))}
       </Select>

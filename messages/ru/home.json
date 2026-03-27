@@ -1,0 +1,21 @@
+{
+  "title": "Vyberite ekskursiyu",
+  "subtitle": "Naydite podkhodyashchiy tur za neskolko sekund.",
+  "noActiveTours": "Aktivnye tury poka ne dostupny.",
+  "categories": "Kategorii",
+  "allCategories": "Vse",
+  "searchPlaceholder": "Vvedite nazvanie tura ili klyuchevoe slovo",
+  "searchAria": "Poisk turov",
+  "clearSearch": "Ochistit poisk",
+  "voiceSearch": "Golovoy poisk",
+  "categoryLabels": {
+    "aile": "Semya",
+    "doga": "Priroda",
+    "deniz": "More",
+    "tarih": "Istoriya",
+    "macera": "Priklyuchenie",
+    "gunubirlik": "Na den",
+    "konaklamali": "S nochevkoy"
+  },
+  "loadMoreTours": "Pokazat eshche"
+}

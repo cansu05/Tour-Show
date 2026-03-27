@@ -1,0 +1,21 @@
+{
+  "title": "Objavte vylety",
+  "subtitle": "Najdite spravny vylet za par sekund.",
+  "noActiveTours": "Zatial nie su k dispozicii ziadne aktivne vylety.",
+  "categories": "Kategorie",
+  "allCategories": "Vsetky",
+  "searchPlaceholder": "Zadajte nazov vyletu alebo klucove slovo",
+  "searchAria": "Vyhladat vylety",
+  "clearSearch": "Vymazat hladanie",
+  "voiceSearch": "Hlasove hladanie",
+  "categoryLabels": {
+    "aile": "Rodina",
+    "doga": "Priroda",
+    "deniz": "More",
+    "tarih": "Historia",
+    "macera": "Dobrodruzstvo",
+    "gunubirlik": "Jednodnovy",
+    "konaklamali": "S ubytovanim"
+  },
+  "loadMoreTours": "Zobrazit viac"
+}

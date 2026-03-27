@@ -1,0 +1,7 @@
+{
+  "noResults": "Po zaprosu \"{searchTerm}\" nichego ne naydeno.",
+  "suggestionsTitle": "Vozmozhno, vy imeli v vidu:",
+  "speechNotDetected": "Golovoy vvod ne raspoznan. Poprobuyte eshche raz.",
+  "micPermissionDenied": "Dlya golosovogo poiska nuzhno razreshenie k mikrofonu.",
+  "speechUnsupported": "Golovoy poisk ne podderzhivaetsya na etom ustroystve."
+}

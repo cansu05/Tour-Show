@@ -1,0 +1,21 @@
+{
+  "title": "Objevte vylety",
+  "subtitle": "Najdete spravny vylet behem nekolika sekund.",
+  "noActiveTours": "Zatim nejsou k dispozici zadne aktivni vylety.",
+  "categories": "Kategorie",
+  "allCategories": "Vse",
+  "searchPlaceholder": "Zadejte nazev vyletu nebo klicove slovo",
+  "searchAria": "Hledat vylety",
+  "clearSearch": "Vymazat hledani",
+  "voiceSearch": "Hlasove hledani",
+  "categoryLabels": {
+    "aile": "Rodina",
+    "doga": "Priroda",
+    "deniz": "More",
+    "tarih": "Historie",
+    "macera": "Dobrodruzstvi",
+    "gunubirlik": "Jednodenni",
+    "konaklamali": "S ubytovanim"
+  },
+  "loadMoreTours": "Zobrazit vice"
+}

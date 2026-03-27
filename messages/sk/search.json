@@ -1,0 +1,7 @@
+{
+  "noResults": "Pre \"{searchTerm}\" sa nenasli ziadne vysledky.",
+  "suggestionsTitle": "Mali ste na mysli:",
+  "speechNotDetected": "Hlas nebol rozpoznany. Skuste to znova.",
+  "micPermissionDenied": "Na hlasove hladanie je potrebne povolenie mikrofónu.",
+  "speechUnsupported": "Hlasove hladanie nie je na tomto zariadeni podporovane."
+}

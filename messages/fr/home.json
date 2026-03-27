@@ -1,0 +1,21 @@
+{
+  "title": "Decouvrir les tours",
+  "subtitle": "Trouvez le bon tour en quelques secondes.",
+  "noActiveTours": "Aucun tour actif a afficher pour le moment.",
+  "categories": "Categories",
+  "allCategories": "Toutes",
+  "searchPlaceholder": "Saisissez le nom du tour ou un mot-cle",
+  "searchAria": "Rechercher des tours",
+  "clearSearch": "Effacer la recherche",
+  "voiceSearch": "Recherche vocale",
+  "categoryLabels": {
+    "aile": "Famille",
+    "doga": "Nature",
+    "deniz": "Mer",
+    "tarih": "Histoire",
+    "macera": "Aventure",
+    "gunubirlik": "Journee",
+    "konaklamali": "Avec nuit"
+  },
+  "loadMoreTours": "Afficher plus"
+}

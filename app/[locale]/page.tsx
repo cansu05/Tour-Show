@@ -4,6 +4,8 @@ import {getCachedActiveTours} from '@/services/tour.server';
 import {TourListClient} from '@/features/tour-list/TourListClient';
 import {StateCard} from '@/components/common/StateCard';
 import {localizeTours} from '@/utils/localize-tour';
+import {sortToursAlphabetical} from '@/utils/search-rank';
+import {TourDataAccessError} from '@/services/firebase/tour.errors';
 
 type Props = {
   params: Promise<{locale: AppLocale}>;
@@ -15,8 +17,13 @@ export default async function LocaleHomePage({params}: Props) {
 
   try {
     const tours = await getCachedActiveTours();
-    return <TourListClient tours={localizeTours(tours, locale)} />;
-  } catch {
+    const localizedTours = localizeTours(tours, locale);
+    return <TourListClient tours={sortToursAlphabetical(localizedTours, locale)} />;
+  } catch (error) {
+    if (!(error instanceof TourDataAccessError)) {
+      throw error;
+    }
+
     return <StateCard title={tCommon('tourLoadError')} />;
   }
 }

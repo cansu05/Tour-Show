@@ -1,0 +1,10 @@
+{
+  "appName": "Tour Tablet",
+  "retry": "Zkusit znovu",
+  "close": "Zavrit",
+  "language": "Jazyk",
+  "unsupported": "Nepodporovano",
+  "tourLoadError": "Data vyletu se nepodarilo nacist. Zkontrolujte internetove pripojeni a zkuste to znovu.",
+  "pageNotFoundTitle": "Stranka nebyla nalezena.",
+  "pageNotFoundDescription": "Pozadovana stranka neexistuje."
+}

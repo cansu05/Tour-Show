@@ -1,0 +1,7 @@
+{
+  "noResults": "Aucun resultat pour \"{searchTerm}\".",
+  "suggestionsTitle": "Vouliez-vous dire :",
+  "speechNotDetected": "Aucune voix detectee. Veuillez reessayer.",
+  "micPermissionDenied": "L'autorisation du microphone est requise pour la recherche vocale.",
+  "speechUnsupported": "La recherche vocale n'est pas prise en charge sur cet appareil."
+}

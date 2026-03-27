@@ -25,7 +25,6 @@
     "@mui/icons-material": "^6.4.10",
     "@mui/material": "^6.4.10",
     "@mui/material-nextjs": "^6.4.10",
-    "firebase": "^11.6.1",
     "firebase-admin": "^13.4.0",
     "next": "^15.2.4",
     "next-intl": "^4.0.0",

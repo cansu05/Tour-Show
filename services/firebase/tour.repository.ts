@@ -1,10 +1,11 @@
 import {adminDb} from '@/lib/firebase/admin';
 import type {Tour} from '@/types/tour';
 import {mapTourDocument} from '@/services/firebase/tour.mapper';
+import {TourDataAccessError} from '@/services/firebase/tour.errors';
 
 function ensureAdminDb() {
   if (!adminDb) {
-    return null;
+    throw new TourDataAccessError('Firebase Admin SDK is not configured.');
   }
 
   return adminDb.collection('tours');
@@ -12,7 +13,6 @@ function ensureAdminDb() {
 
 export async function fetchActiveTours(): Promise<Tour[]> {
   const tourCollection = ensureAdminDb();
-  if (!tourCollection) return [];
 
   try {
     const snapshot = await tourCollection.where('isActive', '==', true).get();
@@ -21,24 +21,33 @@ export async function fetchActiveTours(): Promise<Tour[]> {
       .map((doc) => mapTourDocument({id: doc.id, ...(doc.data() as Record<string, unknown>)}, doc.id))
       .filter((tour): tour is Tour => Boolean(tour));
   } catch (error) {
-    console.warn('[firebase-admin] Failed to fetch active tours.', error);
-    return [];
+    throw new TourDataAccessError('Failed to fetch active tours.', {cause: error});
   }
 }
 
 export async function fetchTourBySlug(slug: string): Promise<Tour | null> {
   const tourCollection = ensureAdminDb();
-  if (!tourCollection) return null;
 
   try {
-    const snapshot = await tourCollection.where('slug', '==', slug).where('isActive', '==', true).limit(1).get();
-    const first = snapshot.docs[0];
+    const directSnapshot = await tourCollection.doc(slug).get();
 
+    if (directSnapshot.exists) {
+      const raw: Record<string, unknown> & {id: string} = {
+        id: directSnapshot.id,
+        ...(directSnapshot.data() as Record<string, unknown>)
+      };
+      if (raw.isActive !== true) return null;
+
+      return mapTourDocument(raw, directSnapshot.id);
+    }
+
+    const fallbackSnapshot = await tourCollection.where('slug', '==', slug).where('isActive', '==', true).limit(1).get();
+    const first = fallbackSnapshot.docs[0];
     if (!first) return null;
 
-    return mapTourDocument({id: first.id, ...(first.data() as Record<string, unknown>)}, first.id);
+    const raw: Record<string, unknown> & {id: string} = {id: first.id, ...(first.data() as Record<string, unknown>)};
+    return mapTourDocument(raw, first.id);
   } catch (error) {
-    console.warn(`[firebase-admin] Failed to fetch tour by slug: ${slug}`, error);
-    return null;
+    throw new TourDataAccessError(`Failed to fetch tour by slug: ${slug}`, {cause: error});
   }
 }

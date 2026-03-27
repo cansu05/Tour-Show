@@ -1,17 +1,27 @@
 import type {AppLocale} from '@/constants/locales';
-import type {Tour} from '@/types/tour';
-import {pickLocalizedList, pickLocalizedText} from '@/utils/ensure-tour-localized';
+import type {Tour, TourLocalizedContent} from '@/types/tour';
+import {getTourPriceSummary} from '@/utils/tour-pricing';
+
+function pickLocalizedContent(
+  localized: Tour['localized'],
+  locale: AppLocale
+): TourLocalizedContent | undefined {
+  if (!localized) return undefined;
+  return localized[locale] || localized.en || localized.de || localized.tr;
+}
 
 export function localizeTour(tour: Tour, locale: AppLocale): Tour {
+  const content = pickLocalizedContent(tour.localized, locale);
+  const priceSummary = getTourPriceSummary(tour.pricing, tour.campaignPrice);
+
   return {
     ...tour,
-    title: pickLocalizedText(tour.localized?.title, locale, tour.title) || tour.title,
-    shortDescription: pickLocalizedText(tour.localized?.shortDescription, locale, tour.shortDescription) || tour.shortDescription,
-    duration: pickLocalizedText(tour.localized?.duration, locale, tour.duration),
-    priceText: pickLocalizedText(tour.localized?.priceText, locale, tour.priceText),
-    keywords: pickLocalizedList(tour.localized?.keywords, locale, tour.keywords) || tour.keywords,
-    highlights: pickLocalizedList(tour.localized?.highlights, locale, tour.highlights) || tour.highlights,
-    includedServices: pickLocalizedList(tour.localized?.includedServices, locale, tour.includedServices) || tour.includedServices
+    title: content?.title || tour.title,
+    shortDescription: content?.shortDescription || tour.shortDescription,
+    description: content?.description || tour.description,
+    thingsToBring: content?.thingsToBring || tour.thingsToBring || [],
+    importantNotes: content?.importantNotes || tour.importantNotes || [],
+    priceText: tour.priceText || priceSummary.displayPriceText
   };
 }
 
